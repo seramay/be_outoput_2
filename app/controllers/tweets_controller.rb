@@ -43,6 +43,10 @@ class TweetsController < ApplicationController
 
   def set_tweet
     @tweet = Tweet.find(params[:id]) 
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def move_to_index

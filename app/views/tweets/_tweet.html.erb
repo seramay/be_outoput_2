@@ -15,7 +15,7 @@
           <% end %>
         </ul>
       </div>
-      <%= simple_format(tweet.text.truncate(20)) %>
+      <%= simple_format(tweet.text.truncate(25)) %>
       <span class="name">
         <a href="/users/<%= tweet.user.id %>">
           <span>投稿者</span><%= tweet.user.nickname %>
