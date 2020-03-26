@@ -1,6 +1,6 @@
 $(function() {
   // 検索した結果を表示するHTMLタグのクラスの要素を取得し変数に代入。処理で使用する。
-  var search_list = $(".contents.row");
+  var search_list = $(".container");
 
   function appendTweet(tweet) {
     // ツイートを投稿したユーザーがログイン状態、かつ、ログイン中のユーザーのidが 投稿したユーザーのidと一致する場合
@@ -19,15 +19,15 @@ $(function() {
     // html変数には投稿情報のHTML要素がある。上述の条件に合わない場合は ${current_user} は空なのでリンクタグがない状態になっている。
     // 気をつける要素としては<%= %>のタグを渡してない、jbuilderで取得した値を使用して表示させているということ。
     
-    const count = 25;
+    const count = 32;
     if (tweet.text.length > count){
       var extraTweet = tweet.text.substring(0, count);
       var insertTweet = extraTweet += '...';
       // TODO 今回の改造では改行には対応していない。文字数制限はできたのでとりあえず進行
       var html = 
-      `<div class="content_post" style="background-image: url(${tweet.image});">
+      `<div class="content_post">
         <div class="more">
-          <span><img src="/assets/arrow_top.png"></span>
+          <span><i class="far fa-hand-point-right"></i></span>
           <ul class="more_list">
             <li>
               <a href="/tweets/${tweet.id}" data-method="get" >詳細</a>
@@ -35,18 +35,18 @@ $(function() {
             ${current_user}
           </ul>
         </div>
-        <p>${insertTweet}</p><br>
+        <p>${insertTweet}</p>
         <span class="name">
           <a href="/users/${tweet.user_id}">
-            <span>投稿者</span>${tweet.nickname}
+            <span>投稿者 </span>${tweet.nickname}<span> さんの投稿一覧</span>
           </a>
         </span>
       </div>`
-    }else{
+    } else {
     var html = 
-      `<div class="content_post" style="background-image: url(${tweet.image});">
+      `<div class="content_post">
         <div class="more">
-          <span><img src="/assets/arrow_top.png"></span>
+          <span><i class="far fa-hand-point-right"></i></span>
           <ul class="more_list">
             <li>
               <a href="/tweets/${tweet.id}" data-method="get" >詳細</a>
@@ -54,10 +54,10 @@ $(function() {
             ${current_user}
           </ul>
         </div>
-        <p>${tweet.text}</p><br>
+        <p>${tweet.text}</p>
         <span class="name">
           <a href="/users/${tweet.user_id}">
-            <span>投稿者</span>${tweet.nickname}
+            <span>投稿者 </span>${tweet.nickname}<span> さんの投稿一覧</span>
           </a>
         </span>
       </div>`

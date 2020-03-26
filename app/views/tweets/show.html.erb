@@ -1,4 +1,4 @@
-<div class ="contents row">
+<div class ="container">
   <div class="content_post" style="background-image: url(<%= @tweet.image %>);">
     <% if user_signed_in? && current_user.id == @tweet.user_id %>
       <div class="more">
@@ -13,18 +13,18 @@
         </ul>
       </div>
     <% end %>
-    <%= simple_format(@tweet.text.truncate(25)) %>
+    <%= simple_format(@tweet.text) %>
     <span class="name">
       <a href="/users/<%= @tweet.user.id %>">
         <span>投稿者</span><%= @tweet.user.nickname %>
       </a>
     </span>
   </div>
-  <div class="container">
+  <div class="comment-wrapper">
     <% if current_user %>
       <%= form_with(model: [@tweet, @comment], local: true, id: "new_comment") do |form| %>
         <%= form.text_area :text, placeholder: "コメントする", rows: "2" , class: "textbox"%>
-        <%= form.submit "SEND" %>
+        <%= form.submit "SEND", class: "form__submit"%>
       <% end %>
     <% else %>
       <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
