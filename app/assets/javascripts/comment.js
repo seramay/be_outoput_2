@@ -22,9 +22,14 @@ $(function(){
       contentType: false
     })
     .done(function(data){
-      var html = buildHTML(data);
-      $('.comments').append(html);
-      $('.textbox').val('');
+      // console.log(data.text)user_id, user_nameも取り出し可能;
+      if (data.text !== "") {
+        var html = buildHTML(data);
+        $('.comments').append(html);
+        $('.textbox').val('');
+      } else {
+        alert('コメントを入力してください');
+      }
     })
     .fail(function(){
       alert('送信失敗');
