@@ -2,7 +2,7 @@
   <div class="tweet-form">
     <%= form_with(model: @tweet, local: true) do |form| %>
       <h3 class="serif_neb">
-        TWEET CREATE
+        TWEET CREATE <span class="about-info">マークダウン、コードブロックが使用できます</span>
       </h3>
       <%= render partial: "form", locals: { form: form } %>
     <% end %>

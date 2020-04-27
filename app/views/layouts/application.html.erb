@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Pictweet</title>
+    <title>Be OutPut !!　 (b 'w')</title>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
@@ -38,7 +38,7 @@
               <ul>
                 <li >
                   <%= link_to "マイページ", "/users/#{current_user.id}", class: 'btn btn-info' %>
-                  <%= link_to  "投稿する", "/tweets/new", class: 'btn btn-warning' %>
+                  <%= link_to  "投稿する", "/tweets/new", class: 'btn btn-warning', data: {"turbolinks" => false}  %>
                   <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'btn btn-danger' %>
                 </li>
               </ul>
@@ -55,10 +55,12 @@
 
     <%= yield %>
 
-    <footer>
-      <p class="serif_df">
-        Copyright 2020. Be OutPut !!
-      </p>
-    </footer>
+    <div class="footer-wrapper">
+      <footer>
+        <p class="serif_df">
+          Copyright 2020. Be OutPut !!
+        </p>
+      </footer>
+    </div>
   </body>
 </html>

@@ -1,3 +1,33 @@
 <%= form.text_area :text, placeholder: "content" , rows: "10" %>
-<%= form.file_field :image, placeholder: "Image File", class: "hidden" %>
-<%= form.submit "SEND" %>
+<%= form.hidden_field :image, placeholder: "Image File", class: "hidden" %>
+<%= form.submit "SEND", class: "canvas-submit" %>
+
+<h3>freehand memo</h3>
+<div class="canvas-field">
+  <div style="border:double 4px #000000;width:800px;" id="candiv">
+    <canvas id="canvas" width="800px" height="600px"></canvas>
+  </div>
+  
+  <div class="btn-box">
+    <ul>
+      <li class="cvsbtn btn-black">黒</li>
+      <li class="cvsbtn btn-red">赤</li>
+      <li class="cvsbtn btn-green">緑</li>
+      <li class="cvsbtn btn-blue">青</li>
+      <li class="cvsbtn btn-white">白</li>
+    </ul>
+    <ul>
+      <li class="cvsbtn btn-thin">細</li>
+      <li class="cvsbtn btn-normal">普</li>
+      <li class="cvsbtn btn-bold">太</li>
+      <li class="cvsbtn btn-half">半透明</li>
+      <li class="cvsbtn btn-solid">実色</li>
+      <li class="cvsbtn btn-sc_r_marker">赤マーカー(仮)</li>
+      <li class="cvsbtn"></li>
+      <li class="cvsbtn"></li>
+      <li class="cvsbtn"></li>
+      <li class="cvsbtn"></li>
+      <li class="cvsbtn btn-send">送信</li>
+    </ul>
+  </div>
+</div>

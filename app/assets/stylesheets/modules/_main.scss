@@ -50,7 +50,7 @@ body {
 
 // application.html.erb
 .header{
-  @include background-image(linear-gradient(top,  rgba(53, 156, 22, 0.85) 0%,rgba(94, 253, 129, 0.9) 62%,rgba(42, 138, 106, 0.8) 100%));
+  @include background-image(linear-gradient(top,  rgba(53, 156, 22, 0.95) 0%,rgba(94, 253, 129, 1) 62%,rgba(23, 75, 58, 0.9) 100%));
   height: 78px;
   position: fixed;
   top: 0;
@@ -83,7 +83,7 @@ body {
           width: 520px;
           line-height: 40px;
           margin: 15px 0;
-          border-radius: 20px;
+          border-radius: 7px;
         }
         .search-btn{
           width: 70px;
@@ -108,34 +108,41 @@ body {
   }
 }
 
-footer {
-  background-color: rgba(192,192,192,0.8);
-  margin: 20px auto 0;
-  padding: 10px;
-  p {
-    color: crimson;
-    text-align: center;
-    font-size: 18px;
-    text-shadow: 3px 3px 5px rgba(222,222,222,1);
+.footer-wrapper{
+  // コンテンツ量が少ない時に高さの最小値を画面全体にしておく、boxsizingでpaddingを含めて、調整してくれている
+  min-height: 100vh;
+  // pos:relv,absとbottom :0; でfooter がした面固定。コンテンツが増えた時にかぶるのを防ぐ為に、親要素が余白を取る
+  padding-bottom: 120px;
+  position: relative;
+  footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(192,192,192,0.8);
+    // border より内側に 15px 上下に余白を取る(bgcが増える)
+    padding: 15px 0;
+    p {
+      color: crimson;
+      text-align: center;
+      font-size: 18px;
+      text-shadow: 3px 3px 5px rgba(222,222,222,1);
+    }
   }
 }
 
-
-///// devise 関連、registrations/new.html 、sessions/new.html
+///// devise 関連、registrations/new.html 、sessions/new.html、views/users/show.html
 .devise_row{
   height: calc(100% - 75px);
 }
 
+.user_show{
+  color: $ghwhite;
+}
 
 ///// tweets/index.html 、tweets/search.html 、tweets/_tweet.html 、search.js
 .content_post{
-  background-color: rgba(148, 95, 95, 0.85);
-  border-radius: 50px 10px 35px 20px / 20px 10px 25px 20px;
   height: 100px;
-  box-shadow: 2px 2px 4px black;
-  margin-bottom: 10px;
-  padding: 10px;
-  position: relative;
+  @include contentpost();
   .more{
     width: 80px;
     text-align: left;
@@ -178,19 +185,129 @@ footer {
   }
 }
 
-
-///// new.html 、edit.html 、_form.html 、deviseのフォーム要素も含める
+///// new.html 、edit.html => canvasエリア含む、_form.html => deviseのフォーム要素も含める
 .tweet-form{
-  border: 1px solid #fff;
+  // border: 1px solid #fff; // 投稿エリア可視化用
   h3{
     color: $ghwhite;
     text-align: center;
     font-size: 30px;
+    position: relative;
+    .about-info{
+      border-radius: 3px;
+      background-color: rgba(255, 255, 255, 0.5);
+      color: rgb(10, 44, 78);
+      font-weight: bold;
+      font-size: 12px;
+      position: absolute;
+      bottom: 0;
+      right: 5%;
+    }
   }
   textarea{
     width: 100%;
     font-size: 16px;
+    border-radius: 5px;
+  }
+}
+
+.canvas-field{
+  background-color: #fff;
+  display: flex;
+  #candiv{
+    margin-right: 10px;
+    }
+  .btn-box{
+    background-color: gray;
+    display: flex;
+    ul{
+      li{
+        list-style: none;
+      }
+      .cvsbtn{
+        border: 1px solid #000;
+        border-radius: 5px;
+        width: 60px;
+        height: 40px;
+        margin: 10px;
+        cursor: pointer;
+        box-shadow: 0 0 10px white;
+      }
+      .btn-black{
+        background-color: black;
+        color: white;
+      }
+      .btn-red{
+        background-color: red;
+        color: yellow;
+      }
+      .btn-green{
+        background-color: green;
+        color: yellow;
+      }
+      .btn-blue{
+        background-color: blue;
+        color: yellow;
+      }
+      .btn-white{
+        background-color: white;
+        color: black;
+      }
+      .btn-sc_r_marker{
+        background-color: rgba(255, 0, 0, 0.5);
+      }
+    }
   }
 }
 
 ///// show.html 、comment.js 、comment-wrapper
+.content_post-show{
+  @include contentpost();
+  .more{
+    width: 80px;
+    text-align: left;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    z-index: 1;
+    .fa-hand-point-right{
+      font-size: 20px;
+    }
+    &:hover .more_list{
+      display: block;
+    }
+    .more_list{
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      li{
+        a{
+          color: $ghwhite;
+        }
+      }
+    }
+  }
+  .content-text{
+    width: 85%;
+    margin-left: 30px;
+  }
+  .name{
+    display: inline-block;
+    margin-left: 15px;
+    a{
+      text-decoration: none;
+      color: $ghwhite;
+    }
+  }
+}
+
+.comments{
+  color: $ghwhite;
+}
+
+///// create.html、update.html、destroy.html
+.success{
+  color: $ghwhite;
+}
